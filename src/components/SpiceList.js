@@ -8,6 +8,14 @@ class SpiceList extends React.Component {
     search: ""
   }
 
+  updateSearchState = (newSearchState) => {
+    this.setState({ search: newSearchState })
+  }
+
+  updateFourStarOnlyState = (newFourStarOnlyState) => {
+    this.setState({ fourStarOnly: newFourStarOnlyState })
+  }
+
   renderSpices() {
     return this.props.spices
       .filter(spice => this.state.fourStarOnly ? spice.rating >= 4 : true)
@@ -20,7 +28,7 @@ class SpiceList extends React.Component {
   render() {
     return (
       <section className="spice-list">
-        <Filter search={this.state.search} fourStarOnly={this.state.fourStarOnly} />
+        <Filter search={this.state.search} fourStarOnly={this.state.fourStarOnly} updateSearchState={this.updateSearchState} updateFourStarOnlyState={this.updateFourStarOnlyState}/>
         {this.renderSpices()}
       </section>
     )
